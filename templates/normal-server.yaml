@@ -1,22 +1,24 @@
+{{- range .Values.servers}}
+---
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: normal-server
+  name: {{.name}}
   namespace: uff-mc
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: normal-server
+      app: {{.name}}
   template:
     metadata:
       labels:
-        app: normal-server
+        app: {{.name}}
     spec:
       volumes:
-        - name: normal-server
+        - name: {{.name}}
           persistentVolumeClaim:
-            claimName: normal-server
+            claimName: {{.name}}
       containers:
         - resources: {}
           terminationMessagePath: /dev/termination-log
@@ -24,28 +26,18 @@ spec:
           env:
             - name: EULA
               value: 'TRUE'
-            - name: TYPE
-              value: PAPER
-            - name: VERSION
-              value: 1.8.8
-            - name: OPS
-              value: 'lucostus,OneManKompetenz2'
-            - name: MAX_PLAYERS
-              value: '29'
-            - name: ANNOUNCE_PLAYER_ACHIEVEMENTS
-              value: 'False'
-            - name: SPAWN_PROTECTION
-              value: '0'
-            - name: VIEW_DISTANCE
-              value: '10'
-            - name: MOTD
-              value: normal-server
+            {{- if .env}}
+            {{- range .env}}
+            - name: {{ .name }}
+              value: {{ .value }}
+            {{- end}}
+            {{- end}}
           ports:
             - containerPort: 25565
               protocol: TCP
           imagePullPolicy: IfNotPresent
           volumeMounts:
-            - name: normal-server
+            - name: {{.name}}
               mountPath: /data
           terminationMessagePolicy: File
           image: 'itzg/minecraft-server:java8-graalvm-ce'
@@ -54,3 +46,30 @@ spec:
       dnsPolicy: ClusterFirst
       securityContext: {}
       schedulerName: default-scheduler
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{.name}}
+  namespace: uff-mc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{.storage }}
+  storageClassName: safe
+  volumeMode: Filesystem
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.name}}
+  annotations:
+    "mc-router.itzg.me/externalServerName": "{{.name}}.apps.kuwu.uff.cool"
+spec:
+  ports:
+    - port: 25565
+  selector:
+    name: {{.name}}
+  {{- end}}
