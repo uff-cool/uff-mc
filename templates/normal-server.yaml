@@ -29,7 +29,7 @@ spec:
             {{- if .env}}
             {{- range .env}}
             - name: {{ .name }}
-              value: {{ .value }}
+              value: {{ quote .value }}
             {{- end}}
             {{- end}}
           ports:
