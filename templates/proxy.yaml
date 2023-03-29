@@ -20,7 +20,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: mc-router
-    namespace: default
+    namespace: uff-mc
 roleRef:
   kind: ClusterRole
   name: services-watcher
