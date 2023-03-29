@@ -16,7 +16,7 @@ spec:
       volumes:
         - name: normal-server
           persistentVolumeClaim:
-            claimName: mc-heine-bau-server
+            claimName: normal-server
       containers:
         - resources: {}
           terminationMessagePath: /dev/termination-log
@@ -45,7 +45,7 @@ spec:
               protocol: TCP
           imagePullPolicy: IfNotPresent
           volumeMounts:
-            - name: mc-heine-bau-server
+            - name: normal-server
               mountPath: /data
           terminationMessagePolicy: File
           image: 'itzg/minecraft-server:java8-graalvm-ce'
