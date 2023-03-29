@@ -9,7 +9,7 @@ servers:
       - name: VERSION
         value: 1.8.8
       - name: SPIGET_RESOURCES
-        value: 9089
+        value: "9089"
       - name: OPS
         value: 'lucostus,OneManKompetenz2'
       - name: MAX_PLAYERS
