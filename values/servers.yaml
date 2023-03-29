@@ -2,7 +2,7 @@ servers:
   - name: hub
     replicas: 1
     storage: 10Gi
-    image: 'itzg/minecraft-server:java8-graalvm-ce'
+    image: 'itzg/minecraft-server:java17-graalvm-ce'
     env:
       - name: TYPE
         value: PAPER
