@@ -26,6 +26,8 @@ spec:
           env:
             - name: EULA
               value: 'TRUE'
+            - name: ICON
+              value: https://avatars.githubusercontent.com/u/108249294?s=64&v4
             {{- if .env}}
             {{- range .env}}
             - name: {{ .name }}
