@@ -73,5 +73,5 @@ spec:
   ports:
     - port: 25565
   selector:
-    name: {{.name}}
+    app: {{.name}}
   {{- end}}
