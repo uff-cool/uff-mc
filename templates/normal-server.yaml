@@ -6,7 +6,7 @@ metadata:
   name: {{.name}}
   namespace: uff-mc
 spec:
-  replicas: 1
+  replicas: {{.replicas}}
   selector:
     matchLabels:
       app: {{.name}}
@@ -42,7 +42,7 @@ spec:
             - name: {{.name}}
               mountPath: /data
           terminationMessagePolicy: File
-          image: 'itzg/minecraft-server:java8-graalvm-ce'
+          image: {{.image}}
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
