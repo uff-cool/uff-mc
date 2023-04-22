@@ -43,3 +43,26 @@ servers:
         value: varo
       - name: SPIGET_RESOURCES
         value: "71075"
+  - name: varo1
+    replicas: 1
+    storage: 10Gi
+    image: 'itzg/minecraft-server:java8-graalvm-ce'
+    env:
+      - name: TYPE
+        value: PAPER
+      - name: VERSION
+        value: "1.16.1"
+      - name: OPS
+        value: 'lucostus,OneManKompetenz2'
+      - name: MAX_PLAYERS
+        value: '29'
+      - name: ANNOUNCE_PLAYER_ACHIEVEMENTS
+        value: 'False'
+      - name: SPAWN_PROTECTION
+        value: '0'
+      - name: VIEW_DISTANCE
+        value: '10'
+      - name: MOTD
+        value: varo
+      - name: SPIGET_RESOURCES
+        value: "71075"
