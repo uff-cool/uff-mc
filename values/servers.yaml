@@ -26,9 +26,9 @@ servers:
     image: 'itzg/minecraft-server:java8-graalvm-ce'
     env:
       - name: TYPE
-        value: PAPER
+        value: FORGE
       - name: VERSION
-        value: "1.16.1"
+        value: "1.19.4"
       - name: OPS
         value: 'lucostus,OneManKompetenz2'
       - name: MAX_PLAYERS
@@ -41,5 +41,5 @@ servers:
         value: '10'
       - name: MOTD
         value: varo
-      - name: SPIGET_RESOURCES
-        value: "71075"
+      - name: MODRINTH_PROJECTS
+        value: "6E5G1X6S"
